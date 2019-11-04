@@ -14,6 +14,9 @@ RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev \
  && docker-php-ext-install -j$(nproc) gd \
  && rm -rf /var/cache/apk/*
 
+# Disable php short_open_tag
+RUN echo 'short_open_tag=Off' >> /usr/local/etc/php/php-cli.ini
+
 # Install drush.
 RUN mkdir /opt/drush \
  && echo '{ \
